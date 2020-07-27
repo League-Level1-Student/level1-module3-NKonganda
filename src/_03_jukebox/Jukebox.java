@@ -5,6 +5,8 @@ package _03_jukebox;
  */
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -12,23 +14,27 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
 
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
-
-public class Jukebox implements Runnable {
-
+public class Jukebox implements Runnable, ActionListener {
+	JButton clapButton = new JButton();
+	JButton stopButton = new JButton();
+	JFrame frame= new JFrame();
+	JPanel panel = new JPanel();
+	Song clap = new Song("Clap.mp3");
     public void run() {
 
 		// 1. Find an mp3 on your computer or on the Internet.
-		// 2. Create a Song object for that mp3
-
+		// 2. Create a Song object for that mp
 		// 3. Play the Song
-
 		/*
 		 * 4. Create a user interface for your Jukebox so that the user can to
 		 * choose which song to play. You can use can use a different button for
@@ -36,6 +42,27 @@ public class Jukebox implements Runnable {
 		 * cover is clicked, stop the currently playing song, and play the one
 		 * that was selected.
 		 */
+    			clapButton.addActionListener(this);
+    			
+    			stopButton.addActionListener(this);
+    			
+    			stopButton.setText("Stop");
+    			
+    			clapButton.setText("Clap");
+    			
+    			frame.setVisible(true);
+
+    			frame.setSize(500, 500);
+
+    			frame.setTitle("DrumKit");
+    	
+    			frame.add(panel);
+    			
+    			panel.add(clapButton);
+    			
+    			panel.add(stopButton);
+    			
+    		
     }
     
     
@@ -44,6 +71,13 @@ public class Jukebox implements Runnable {
 		URL imageURL = getClass().getResource(fileName);
 		Icon icon = new ImageIcon(imageURL);
 		return new JLabel(icon);
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+	  	if (buttonPressed == ))
 	}
 
 }
